@@ -1,0 +1,22 @@
+ABOUT JPROBE
+-------------
+First, we must pay homage to the best-known kernel-debugging technique/tool, the printk. 
+It is a universal tool, customisable enough to provide you the desired output — and usually when all else fails, this can save the day! 
+It’s very easy to use; it simply prints whatever you like, to track the execution of a module by printing its status after each step, 
+and thus pin-pointing bugs and defects.
+
+In order to implement printk, you need to recompile the kernel with printk statements added to the specific module you’re debugging.
+This is usually a time-consuming process of building, installing and rebooting the kernel.
+
+For those who like bonus features, Jprobe is another kind of probing technique, 
+which can be used to access the target function’s arguments, and thus display what was passed to the function. 
+The basics are the same as that of Kprobe, but this additional feature makes Jprobe an interesting tool.
+
+To get the Jprobe structure details, look in the file include/linux/kprobes.h:
+
+struct jprobe {
+        struct kprobe kp; 
+        void *entry;    /* probe handling code to jump to */
+};
+As you see, it contains a struct kprobe member, plus a pointer to store the address of a handler function to jump to.
+
