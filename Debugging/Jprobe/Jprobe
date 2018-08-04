@@ -20,3 +20,7 @@ struct jprobe {
 };
 As you see, it contains a struct kprobe member, plus a pointer to store the address of a handler function to jump to.
 
+
+
+Credits: https://opensourceforu.com/2011/04/kernel-debugging-using-kprobe-and-jprobe/
+More details: https://www.infradead.org/~mchehab/kernel_docs/unsorted/kprobes.html
