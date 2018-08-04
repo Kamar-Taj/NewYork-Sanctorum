@@ -5,9 +5,16 @@ It is a universal tool, customisable enough to provide you the desired output �
 It’s very easy to use; it simply prints whatever you like, to track the execution of a module by printing its status after each step, 
 and thus pin-pointing bugs and defects.
 
- In order to implement printk, you need to recompile the kernel with printk statements added to the specific module you’re debugging. 
- This is usually a time-consuming process of building, installing and rebooting the kernel.
+In order to implement printk, you need to recompile the kernel with printk statements added to the specific module you’re debugging. 
+This is usually a time-consuming process of building, installing and rebooting the kernel.
+
+Kprobe is a very simple method to probe the running kernel. 
+At a fundamental level, it requires the address of a kernel function that needs to be debugged. 
+Then, you create pre- and post-handlers that will print a debugging message when the target kernel function is called. 
+(Actually, a handler performs any action specified in its code; in this case, it happens to be printing.) 
+Thus, every time that function is called, you can track it.
+
+
+Credits: https://opensourceforu.com/2011/04/kernel-debugging-using-kprobe-and-jprobe/
+More details: https://www.infradead.org/~mchehab/kernel_docs/unsorted/kprobes.html
  
- More details: https://www.infradead.org/~mchehab/kernel_docs/unsorted/kprobes.html
- 
- Credits: https://opensourceforu.com/2011/04/kernel-debugging-using-kprobe-and-jprobe/
