@@ -1,0 +1,27 @@
+The example is simple to understand, but let me explain things a bit. Here, in the myinit() function, 
+you assigned the target function address to the addr member of the Kprobe member struct kp, just like for the earlier module. 
+The main difference is that you’ve now assigned a single handler function, my_handler, to the entry member:
+
+my_probe.entry = (kprobe_opcode_t *)my_handler;
+You’ve probably already noted that the signature of the single handler function here is quite different from the Kprobe handlers. 
+The reason is, the handler must have the same arguments as that of the kernel function you’re probing, which is once again ip_rcv():
+
+int my_handler (struct sk_buff *skb, struct net_device *dev, struct packet_type *pt, struct net_device *orig_dev);
+extern int   ip_rcv(struct sk_buff *skb, struct net_device *dev,  struct packet_type *pt, struct net_device *orig_dev);
+Jprobe lets us access the arguments of a function by calling your handler with the same arguments passed to the target function. 
+This means that when ip_rcv is called, its arguments can be accessed from your probe handler as it is able to refer to the function’s 
+address space plus the components within that function stack.
+
+The line my_iph = ip_hdr(skb); will extract the IP header from sk_buff. Then extract the source and destination IP addresses in dot 
+notation form, using the NIPQUAD and NIPQUAD_FMT macros declared in include/linux/kernel.h, and print the addresses.
+
+Now, compile your module, insert it, and check that the module has been inserted successfully, just as before. Again, to invoke ip_rcv(), 
+run a ping and then run dmesg to check the output:
+
+# ping www.google.com
+# dmesg
+Source IP: 192.168.1.1
+Destination IP: 192.168.1.3
+Source IP: 209.85.231.104
+Destination IP: 192.168.1.3
+The output shows that Jprobe lets you get the function’s argument values, which can be very handy when debugging data-dependent bugs.
