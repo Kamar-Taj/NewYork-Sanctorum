@@ -13,3 +13,7 @@ Kernel Function Tracer (FUNCTION_TRACER)
 Kernel Function Graph Tracer (FUNCTION_GRAPH_TRACER)
 Enable/disable ftrace dynamically (DYNAMIC_FTRACE)
 Trace max stack (STACK_TRACER)
+
+Depending on your architecture, a few more tracers can be enabled during compilation, as per requirements. 
+The listed tracers are for debugging. Once the kernel compilation is complete, and you have booted to the new kernel, 
+tracing can be initiated.
