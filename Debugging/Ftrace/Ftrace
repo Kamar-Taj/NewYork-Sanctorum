@@ -1,0 +1,8 @@
+ABOUT FTRACE
+-------------
+Ftrace (Function Tracer) is the “Swiss army knife” of kernel tracing. It is a tracing mechanism built right into the Linux kernel. 
+It has the capability to see exactly what is happening in the kernel, and debug it. 
+ftrace is more than a mere function tracer, and has a wide variety of tracing abilities to debug and analyse a number of issues like 
+latency, unexpected code paths, performance issues, etc. It can also be used as a good learning tool.
+
+Credits: https://opensourceforu.com/2010/11/kernel-tracing-with-ftrace-part-1/
