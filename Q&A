@@ -1,0 +1,38 @@
+1. What is the size of instruction in x86, ARM and MIPS architecture?
+2. Whethere CPU can understand assembly language directly?
+3. What is portability?
+4. What is the difference between upstream driver and inbox driver?
+5. What is the difference between software, driver and firmware?
+6. What is the instruction set and use. On which bases size of instruction set will be defined?
+7. What are the different steps involved in linux booting process?
+8. What is high memory and low memory?
+9. Can kernel access user space memory. If yes, how? If no, Why?
+10. On which ratios kernel space and user space memory is divided?
+11. What is Kprobe, Jprobe and Kretprobe?
+12. What is the difference between Kprobe and printk?
+13. Is it possible to read register values using Kprobe?
+14. How a virtual address is converted to physical address?
+15. What happens if interrupt handler goes to sleep?
+16. Is it possible to bind or unbind a driver from devices manually from user space?
+17. What is ftrace?
+18. How ftrace and Kprobe are different?
+19. How driver will differentiate the data from different devices?
+20. Do interrupt run in stack?
+21. What is meant by ISR?
+22. Is interrupt mean ISR?
+23. Whether interrupts can be nested?
+24. Can we use block calls like read, write, register_irq(), etc., in interrupt context?
+25. What is the size of kernel stack and interrupt stack?
+26. Is interrupt stack is shareable?
+27. When interupt occurs what happens to the current process?
+28. What is atomic operation and atomic context?
+29. Why interrupt need to run in interrupt context not in user/process context?
+30. What is page fault?
+31. What is core dump and how to analyze core dump?
+32. Explain memory trashing.
+33. What is stack overflow attack, explain.
+34. What is the difference between ARM and x86 proccessor?
+35. What are the different types of instruction set in ARM?
+36. What is assemble?
+37. What is user space and Kernel space?
+
