@@ -1,0 +1,25 @@
+ftrace allows you to perform tracing even for a specific process. In the /sys/kernel/debug/tracing directory, 
+the file set_ftrace_pid needs to be updated with the PID of the process you want to be traced. 
+The traceprocess.sh sample script below shows how to capture the PID on-the-go, and enable tracing.
+
+1. Check for root permission
+2. Check for args to this function
+3. Check for debugfs mount
+
+If the above conditions are satisfied. Then start tracing.
+4. Flush the existing tracing data
+5. Set required tracer function
+6. Enable the current tracer
+7. write current process id to set_ftrace_pid file
+8. Start tracing
+9. Execute the process
+
+You can refine it with your own innovations. Run it with the command whose process you want to trace as the argument.
+Once tracing is complete, you need to clear the set_ftrace_pid file, for which you can use the following command:
+:> set_ftrace_pid
+
+[root@Kamar-Taj]# > /sys/kernel/debug/tracing/set_ftrace_pid
+[root@Kamar-Taj]#cat /sys/kernel/debug/tracing/set_ftrace_pid
+no pid
+[root@Kamar-Taj]#
+
