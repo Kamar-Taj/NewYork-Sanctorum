@@ -1,0 +1,48 @@
+1. How to measure actual memory usage of an application or process?
+https://stackoverflow.com/questions/131303/how-to-measure-actual-memory-usage-of-an-application-or-process
+
+2. What killed my process and why?
+https://stackoverflow.com/questions/726690/what-killed-my-process-and-why
+
+3. Prevent a background process from being stopped after closing SSH client
+https://stackoverflow.com/questions/285015/linux-prevent-a-background-process-from-being-stopped-after-closing-ssh-client
+
+4. What is the maximum number of threads that can be created by a process under Linux?
+https://stackoverflow.com/questions/344203/maximum-number-of-threads-per-process-in-linux
+
+5. How to run process as background and never die?
+https://stackoverflow.com/questions/4797050/how-to-run-process-as-background-and-never-die
+
+6. In Linux, what happens to the state of a process when it needs to read blocks from a disk? Is it blocked? If so, how is another process chosen to execute?
+https://stackoverflow.com/questions/1475683/linux-process-states
+
+7. I have a process in Linux that's getting a segmentation fault. How can I tell it to generate a core dump when it fails?
+https://stackoverflow.com/questions/17965/how-to-generate-a-core-dump-in-linux-when-a-process-gets-a-segmentation-fault
+
+8. I wanted to find all fds opened for a process in linux.
+https://stackoverflow.com/questions/6583158/finding-open-file-descriptors-for-a-process-linux-c-code
+
+9. Retrieve CPU usage and memory usage of a single process on Linux?
+https://stackoverflow.com/questions/1221555/retrieve-cpu-usage-and-memory-usage-of-a-single-process-on-linux
+
+10. I am trying to make a linux executable as a service
+https://stackoverflow.com/questions/22336075/linux-process-into-a-service
+
+11. In Windows environment there is an API to obtain the path which is running a process. Is there something similar in Unix / Linux?
+https://stackoverflow.com/questions/606041/how-do-i-get-the-path-of-a-process-in-unix-linux
+
+12. Which process is causing "device busy" when doing umount?
+https://stackoverflow.com/questions/624154/linux-which-process-is-causing-device-busy-when-doing-umount
+
+13. How Linux handles threads and process scheduling
+https://stackoverflow.com/questions/8463741/how-linux-handles-threads-and-process-scheduling
+
+14. What do 'real', 'user' and 'sys' mean in the output of time(1)?
+https://stackoverflow.com/questions/556405/what-do-real-user-and-sys-mean-in-the-output-of-time1/556411#556411
+
+15. Threading vs Process - task_struct vs thread_info
+https://stackoverflow.com/questions/21360524/linux-kernel-threading-vs-process-task-struct-vs-thread-info
+
+16.Linux process address space explain? [closed]
+https://stackoverflow.com/questions/15468785/linux-process-address-space-explain
+
