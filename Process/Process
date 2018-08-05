@@ -1,0 +1,30 @@
+All ABOUT PROCESS
+-----------------
+Process - "Process" is an executing instance of a program. These are frequently refered as "Tasks".
+
+Types of process
+Foreground process: These process are intractive process that which are started by users. These are not automatically started as a part of system functions/services.
+Backgorund process: Thesse process are called, non interactive or automatic process. These process are not connected to any terminal or doesn't expect any user input.
+
+Demon - These are special types of background processes that start at system startup and keep running forever as a service; they don’t die. 
+They are started as system tasks (run as services). However, they can be controlled by a user via the init process.
+
+Creation of process:
+There are two ways to create a process.
+1. system() - This method is relatively simple, however, it’s inefficient and has significantly certain security risks.
+2. fork() or exec() - This technique is a little advanced but offers greater flexibility, speed, together with security.
+The newly created process is called "Child process". The parent process will create the exact copy of itself in memory for child process.
+Because of this, the child process will have same environment as it parent. At the time of child creaton, 
+the only difference present between parent and child is "PID" or "Process identification number".
+
+How Linux identify process:
+In Linux, different users can run different programs. So, to identfy the correct process, Linux assign a unique identification to each
+instance. Which is called as "Process identification number" or "PID".
+So, to identify a program/instance, Linux useses the PID and PPID (Parent PID). Because of this, we can categorized process into
+Parent process - these are processes that create other processes during run-time. 
+Child process - these processes are created by other processes during run-time.
+
+Init Process:
+
+States of a Process:
+
