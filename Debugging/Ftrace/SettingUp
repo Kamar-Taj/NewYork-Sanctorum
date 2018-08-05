@@ -1,0 +1,15 @@
+Debugfs needs to be set up to run on the machine you want to use ftrace on. If you are unaware of how to set up debugfs, 
+"Debugfs" section, under "Debugging" folder.
+
+debugfs should have been mounted on /sys/kernel/debugfs, and if tracing is enabled, you should be able to see a directory called tracing 
+under debugfs. If debugfs is not mounted, you can issue the following command:
+
+# mount -t debugfs nodev /sys/kernel/debug
+If you are unable to see the tracing subdirectory, you will need to enable tracing in the kernel configuration, and recompile it. 
+Look for the following options to be enabled in the kernel configuration path (refer to Figure 1):
+Kernel Hacking -> Tracers
+
+Kernel Function Tracer (FUNCTION_TRACER)
+Kernel Function Graph Tracer (FUNCTION_GRAPH_TRACER)
+Enable/disable ftrace dynamically (DYNAMIC_FTRACE)
+Trace max stack (STACK_TRACER)
