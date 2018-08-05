@@ -1,0 +1,90 @@
+Files in the tracing directory (/sys/kernel/debug/tracing) control the tracing ability. 
+A few files could be different, depending upon what tracers you selected during kernel configuration. 
+You can obtain information on these files from the <kernel source>/Documentation/tracing directory.
+
+Let’s explore a few of the important ones:
+available_tracers: This shows what tracers are compiled to trace the system.
+current_tracer: Displays what tracer is currently enabled. Can be changed by echoing a new tracer into it.
+tracing_enabled: Lets you enable or disable the current tracing.
+trace: Actual trace output.
+set_ftrace_pid: Sets the PID of the process for which trace needs to be performed.
+To find out the available tracers, just cat the available_tracers file. 
+Tracers in the space-separated output include: nop (not a tracer, this is set by default); function (function tracer); 
+function_graph (function graph tracer), etc:
+
+# cat available_tracers
+blk function_graph mmiotrace wakeup_rt wakeup irqsoff function sched_switch nop
+Once you identify the tracer that you want to use, enable it (ftrace takes only one tracer at a time):
+
+# cat current_tracer             ##to see what tracer is currently in use.
+# echo function > current_tracer ##select a particular tracer.
+# cat current_tracer             ##check whether we got what we wanted.
+To start tracing, use the following commands:
+
+# echo 1 > tracing_enabled       ##initiate tracing
+# cat trace > /tmp/trace.txt     ##save the contents of the trace to a temporary file.
+# echo 0 > tracing_enabled       ##disable tracing
+# cat /tmp/trace.txt             ##to see the output of the trace file.
+The trace output is now in the trace.txt file.
+
+Let’s begin with tracer options. The output of the tracing can be controlled by a file called trace_options. 
+Various fields can be enabled and disabled by updating options in the file /sys/kernel/debug/tracing/trace_options.
+
+To disable a tracing option, a “no” keyword needs to be added to the start of the line. 
+For example, echo notrace_printk > trace_options. (Remember not to have a space between no and the option.) 
+To enable a trace again, you could use, for instance, echo trace_printk > trace_options.
+
+Function graph tracer:
+The function graph tracer tracks the entry and exit of a function, and is quite useful to track its execution time. 
+Functions with a duration of over 10 microseconds are marked with a “+”, and those over 100 microseconds with “!”. 
+To enable the function graph tracer, use echo function_graph > current_tracer.
+
+There are a lot of tracers; the entire list is in linux/Documentation/trace/ftrace.txt. 
+The tracers are enabled or disabled by echoing the tracer name into the current_tracer file.
+
+Dynamic tracing
+We can easily get inundated with the amount of data the function tracer throws at us. 
+There is a dynamic way to filter just the functions we need, and eliminate those that we don’t need: to specify them in the file 
+set_ftrace_filter. (First find the function(s) you want, from the available_filter_functions file.)
+
+As you can see, you can even use wild-cards for the functions’ names. 
+I used all the vmalloc_ functions, and set them with: echo vmalloc_* > set_ftrace_filter.
+
+Event tracing:
+Tracing can also be triggered when particular events happen on the system. 
+Available system events are found in the file available_events:
+
+[root@Kamar-Taj]# cat available_events | head -10
+kvmmmu:kvm_mmu_pagetable_walk
+kvmmmu:kvm_mmu_paging_element
+kvmmmu:kvm_mmu_set_accessed_bit
+kvmmmu:kvm_mmu_set_dirty_bit
+kvmmmu:kvm_mmu_walker_error
+kvmmmu:kvm_mmu_get_page
+kvmmmu:kvm_mmu_sync_page
+kvmmmu:kvm_mmu_unsync_page
+kvmmmu:kvm_mmu_prepare_zap_page
+kvm:kvm_entry
+For example, to enable an event, you would use: echo sys_enter_nice >> set_event (note that you append the event name to the file, 
+using the >> append redirector, and not >). To disable an event, 
+precede the event name with a “!”: echo '!sys_enter_nice' >> set_event.
+
+For further details about event tracing, read the file Documents/Trace/events.txt in the kernel directory.
+
+trace-cmd and KernelShark:
+trace-cmd, introduced by Steven Rostedt in his July 2009 post to the LKML, makes it easy to manipulate the tracer. 
+Follow these steps to get the latest version, including the GUI tool KernelShark, installed on your system:
+
+wget http://www.hr.kernel.org/pub/linux/analysis/trace-cmd/trace-cmd-1.0.5.tar.gz
+tar -zxvf trace-cmd-1.0.5.tar.gz
+cd trace-cmd*
+make
+make gui # compiles GUI tools (KernelShark)
+make install
+make install_gui # installs GUI tools
+With trace-cmd, tracing becomes a breeze:
+
+trace-cmd list                   ##to see available events
+trace-cmd record -e syscalls ls  ##Initiate tracing on the syscall 'ls'
+##(A file called trace.dat gets created in the current directory.)
+trace-cmd report                 ## displays the report from trace.dat
