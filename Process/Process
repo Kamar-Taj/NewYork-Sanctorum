@@ -3,10 +3,13 @@ All ABOUT PROCESS
 Process - "Process" is an executing instance of a program. These are frequently refered as "Tasks".
 
 Types of process
-Foreground process: These process are intractive process that which are started by users. These are not automatically started as a part of system functions/services.
-Backgorund process: Thesse process are called, non interactive or automatic process. These process are not connected to any terminal or doesn't expect any user input.
+Foreground process: These process are intractive process that which are started by users. 
+These are not automatically started as a part of system functions/services.
+Backgorund process: Thesse process are called, non interactive or automatic process. 
+These process are not connected to any terminal or doesn't expect any user input.
 
-Demon - These are special types of background processes that start at system startup and keep running forever as a service; they don’t die. 
+Demon - These are special types of background processes that start at system startup and keep running forever as a service; 
+they don’t die. 
 They are started as system tasks (run as services). However, they can be controlled by a user via the init process.
 
 Creation of process:
@@ -25,7 +28,8 @@ Parent process - these are processes that create other processes during run-time
 Child process - these processes are created by other processes during run-time.
 
 Init Process:
-nit process is the mother (parent) of all processes on the system, it’s the first program that is executed when the Linux system boots up; it manages all other processes on the system. It is started by the kernel itself, so in principle it does not have a parent process.
+init process is the mother (parent) of all processes on the system, it’s the first program that is executed when the Linux system boots up; 
+it manages all other processes on the system. It is started by the kernel itself, so in principle it does not have a parent process.
 
 The init process always has process ID of 1. It functions as an adoptive parent for all orphaned processes.
 
