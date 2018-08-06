@@ -25,6 +25,9 @@ Parent process - these are processes that create other processes during run-time
 Child process - these processes are created by other processes during run-time.
 
 Init Process:
+nit process is the mother (parent) of all processes on the system, it’s the first program that is executed when the Linux system boots up; it manages all other processes on the system. It is started by the kernel itself, so in principle it does not have a parent process.
+
+The init process always has process ID of 1. It functions as an adoptive parent for all orphaned processes.
 
 States of a Process:
 
