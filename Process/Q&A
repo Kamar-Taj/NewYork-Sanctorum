@@ -13,7 +13,8 @@ https://stackoverflow.com/questions/344203/maximum-number-of-threads-per-process
 5. How to run process as background and never die?
 https://stackoverflow.com/questions/4797050/how-to-run-process-as-background-and-never-die
 
-6. In Linux, what happens to the state of a process when it needs to read blocks from a disk? Is it blocked? If so, how is another process chosen to execute?
+6. In Linux, what happens to the state of a process when it needs to read blocks from a disk? Is it blocked? 
+If so, how is another process chosen to execute?
 https://stackoverflow.com/questions/1475683/linux-process-states
 
 7. I have a process in Linux that's getting a segmentation fault. How can I tell it to generate a core dump when it fails?
@@ -49,7 +50,8 @@ https://stackoverflow.com/questions/15468785/linux-process-address-space-explain
 17. Why child process still alive after parent process was killed in Linux?
 https://stackoverflow.com/questions/8533377/why-child-process-still-alive-after-parent-process-was-killed-in-linux
 
-18. In Linux when a new process is created, it inherits the normal_prio value of it's parent process for it's static_prio. Where does this actually happen??
+18. In Linux when a new process is created, it inherits the normal_prio value of it's parent process for it's static_prio. 
+Where does this actually happen??
 https://stackoverflow.com/questions/9688974/priority-inheritance-from-parent-process-by-new-process-in-linux
 
 19. usage of union in Linux process descriptor 
@@ -67,10 +69,12 @@ https://stackoverflow.com/questions/24554614/how-find-out-which-process-is-using
 23. Does linux schedule a process or a thread?
 https://stackoverflow.com/questions/15601155/does-linux-schedule-a-process-or-a-thread
 
-24. Now my question is where is / directory created by init (init process of initramfs) to mount actual root partition. Is it in ram or hardisk ?
+24. Now my question is where is / directory created by init (init process of initramfs) to mount actual root partition. 
+Is it in ram or hardisk ?
 https://stackoverflow.com/questions/17058199/linux-boot-process-iniramfs-root
 
-25. What is the size of a process/thread in Linux? When a process/thread is created, along with task_struct and other data structure inside it, is there anything else?
+25. What is the size of a process/thread in Linux? When a process/thread is created, along with task_struct and other data structure 
+inside it, is there anything else?
 https://stackoverflow.com/questions/11433880/size-of-a-process-thread-in-linux
 
 26. Check the open FD limit for a given process in Linux
@@ -81,6 +85,4 @@ https://www.tecmint.com/how-to-kill-a-process-in-linux/
 
 28. How to Find a Process Name Using PID Number in Linux
 https://www.tecmint.com/find-process-name-pid-number-linux/
-
-
 
