@@ -43,6 +43,37 @@ https://stackoverflow.com/questions/556405/what-do-real-user-and-sys-mean-in-the
 15. Threading vs Process - task_struct vs thread_info
 https://stackoverflow.com/questions/21360524/linux-kernel-threading-vs-process-task-struct-vs-thread-info
 
-16.Linux process address space explain? [closed]
+16.Linux process address space explain?
 https://stackoverflow.com/questions/15468785/linux-process-address-space-explain
+
+17. Why child process still alive after parent process was killed in Linux?
+https://stackoverflow.com/questions/8533377/why-child-process-still-alive-after-parent-process-was-killed-in-linux
+
+18. In Linux when a new process is created, it inherits the normal_prio value of it's parent process for it's static_prio. Where does this actually happen??
+https://stackoverflow.com/questions/9688974/priority-inheritance-from-parent-process-by-new-process-in-linux
+
+19. usage of union in Linux process descriptor 
+https://stackoverflow.com/questions/22140075/usage-of-union-in-linux-process-descriptor
+
+20. Thread scheduling with a process in Linux
+https://stackoverflow.com/questions/27539054/thread-scheduling-with-a-process-in-linux
+
+21. Why keep a kernel stack for each process in linux?
+https://stackoverflow.com/questions/24413430/why-keep-a-kernel-stack-for-each-process-in-linux
+
+22. How find out which process is using a file in Linux?
+https://stackoverflow.com/questions/24554614/how-find-out-which-process-is-using-a-file-in-linux
+
+23. Does linux schedule a process or a thread?
+https://stackoverflow.com/questions/15601155/does-linux-schedule-a-process-or-a-thread
+
+24. Now my question is where is / directory created by init (init process of initramfs) to mount actual root partition. Is it in ram or hardisk ?
+https://stackoverflow.com/questions/17058199/linux-boot-process-iniramfs-root
+
+25. What is the size of a process/thread in Linux? When a process/thread is created, along with task_struct and other data structure inside it, is there anything else?
+https://stackoverflow.com/questions/11433880/size-of-a-process-thread-in-linux
+
+26. Check the open FD limit for a given process in Linux
+https://stackoverflow.com/questions/1356675/check-the-open-fd-limit-for-a-given-process-in-linux
+
 
