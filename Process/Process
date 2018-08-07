@@ -175,3 +175,9 @@ or eventually returned to init if the process becomes an orphan. ( Processes whi
 their parent is not waiting for them are termed zombies. These are eventually inherited by init as orphans and killed off. 
 Note that modern UNIX shells do not produce as many orphans and zombies as older systems used to. )
 
+Process context (aka context switch):
+In computing, a context switch is the process of storing and restoring the state (more specifically, the execution context) of a 
+process or thread so that execution can be resumed from the same point at a later time.
+
+
+
