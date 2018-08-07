@@ -94,3 +94,25 @@ http://www.tutorialspoint.com/unix_system_calls/wait.htm
 
 31. How to make Make parent wait for all child processes
 https://stackoverflow.com/questions/19461744/make-parent-wait-for-all-child-processes
+
+32. What's the difference between Process Context and Process Control Block?
+https://cs.stackexchange.com/questions/52587/whats-the-difference-between-process-context-and-process-control-block
+
+33. Why do Kernel threads run in process context?
+https://stackoverflow.com/questions/18602664/why-do-kernel-threads-run-in-process-context
+
+34. Why kernel code/thread executing in interrupt context cannot sleep?
+https://stackoverflow.com/questions/1053572/why-kernel-code-thread-executing-in-interrupt-context-cannot-sleep
+
+35. Thread context switch vs process context switch
+https://stackoverflow.com/questions/5440128/thread-context-switch-vs-process-context-switch
+
+36. system call and context switch
+https://stackoverflow.com/questions/9238326/system-call-and-context-switch
+
+37. Process Context vs Process Control Block
+https://stackoverflow.com/questions/35147243/process-context-vs-process-control-block
+
+38. Linux Kernel Code Execution Contexts
+https://stackoverflow.com/questions/6555387/linux-kernel-code-execution-contexts
+
