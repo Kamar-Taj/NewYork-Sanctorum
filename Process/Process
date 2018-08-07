@@ -28,10 +28,150 @@ Parent process - these are processes that create other processes during run-time
 Child process - these processes are created by other processes during run-time.
 
 Init Process:
-init process is the mother (parent) of all processes on the system, it’s the first program that is executed when the Linux system boots up; 
+init process is the mother (parent) of all processes on the system, it’s the first program that is executed when the Linux system boots 
+up; 
 it manages all other processes on the system. It is started by the kernel itself, so in principle it does not have a parent process.
-
 The init process always has process ID of 1. It functions as an adoptive parent for all orphaned processes.
 
+Process Memory:
+Process memory is divided into four sections as shown in Figure 3.1 below:
+* The text section comprises the compiled program code, read in from non-volatile storage when the program is launched.
+* The data section stores global and static variables, allocated and initialized prior to executing main.
+* The heap is used for dynamic memory allocation, and is managed via calls to new, delete, malloc, free, etc.
+* The stack is used for local variables. Space on the stack is reserved for local variables when they are declared 
+( at function entrance or elsewhere, depending on the language ), and the space is freed up when the variables go out of scope. 
+Note that the stack is also used for function return values, and the exact mechanisms of stack management may be language specific.
+* Note that the stack and the heap start at opposite ends of the process's free space and grow towards each other. 
+If they should ever meet, then either a stack overflow error will occur, or else a call to new or malloc will fail due to 
+insufficient memory available.
+* When processes are swapped out of memory and later restored, additional information must also be stored and restored. 
+Key among them are the program counter and the value of all program registers.
+      ----------------
+      |     Stack    |
+      ---------------
+      |              |
+      ----------------
+      |     Heap     |
+      ----------------
+      |     Data     |
+      ----------------
+      |     Text     |
+      ----------------
+      
 States of a Process:
+Processes may be in one of 5 states, as shown in Figure 3.2 below.
+New - The process is in the stage of being created.
+Ready - The process has all the resources available that it needs to run, but the CPU is not currently working on this process's 
+instructions.
+Running - The CPU is working on this process's instructions.
+Waiting - The process cannot run at the moment, because it is waiting for some resource to become available or for some event to occur. 
+For example the process may be waiting for keyboard input, disk access request, inter-process messages, a timer to go off, 
+or a child process to finish.
+Terminated - The process has completed.
+Some systems may have other states besides the ones listed here.
+
+Process Control Block:
+For each process there is a Process Control Block, PCB, which stores the following ( types of ) process-specific information, 
+as illustrated in Figure 3.1. ( Specific details may vary from system to system. )
+
+Process State - Running, waiting, etc., as discussed above.
+Process ID, and parent process ID.
+CPU registers and Program Counter - These need to be saved and restored when swapping processes in and out of the CPU.
+CPU-Scheduling information - Such as priority information and pointers to scheduling queues.
+Memory-Management information - E.g. page tables or segment tables.
+Accounting information - user and kernel CPU time consumed, account numbers, limits, etc.
+I/O Status information - Devices allocated, open file tables, etc.
+
+        -------------------------
+        |     Process State     |
+        -------------------------
+        |     Process Number    |
+        -------------------------
+        |     Process Counter   |
+        -------------------------
+        |       Registers       |
+        -------------------------
+        |     Memory Limits     |
+        -------------------------
+        |   List of open files  |
+        -------------------------
+        |       ...........     |
+        -------------------------
+        
+The process control block in in Linux operating system is reprasented by C structure task_struct. This structure contain all
+information for reprasenting a process, including state of process, scheduling, memory management information, pointer to the process
+parent and any of its child. Some of these fields include,
+
+pid_t pid;
+long state;
+usigned int time_slice;
+struct task_struct* parent;
+struct list_head children;
+struct file_struct *files;
+struct mm_struct *mm;
+
+For example, the state of a process is represtend by the field long state in structure. With in the Linux Kernel, all activity process
+are represented using doubly linked list of task_struct, and kernel maintains a pointer -current- to the process currently executing 
+on the system. 
+
+Process Creation:
+* Processes may create other processes through appropriate system calls, such as fork or spawn. 
+  The process which does the creating is termed the parent of the other process, which is termed its child.
+* Each process is given an integer identifier, termed its process identifier, or PID. 
+  The parent PID ( PPID ) is also stored for each process.
+* On typical UNIX systems the process scheduler is termed sched, and is given PID 0. 
+  The first thing it does at system startup time is to launch init, which gives that process PID 1. 
+  Init then launches all system daemons and user logins, and becomes the ultimate parent of all other processes.
+
+* Depending on system implementation, a child process may receive some amount of shared resources with its parent. 
+  Child processes may or may not be limited to a subset of the resources originally allocated to the parent, 
+  preventing runaway children from consuming all of a certain system resource.
+* There are two options for the parent process after creating the child:
+  1. Wait for the child process to terminate before proceeding. The parent makes a wait( ) system call, 
+  for either a specific child or for any child, which causes the parent process to block until the wait( ) returns. 
+  UNIX shells normally wait for their children to complete before issuing a new prompt.
+  2. Run concurrently with the child, continuing to process without waiting. 
+  This is the operation seen when a UNIX shell runs a process as a background task. 
+  It is also possible for the parent to run for a while, and then wait for the child later, 
+  which might occur in a sort of a parallel processing operation. 
+  ( E.g. the parent may fork off a number of children without waiting for any of them, then do a little work of its own, 
+  and then wait for the children. )
+* Two possibilities for the address space of the child relative to the parent:
+  1. The child may be an exact duplicate of the parent, sharing the same program and data segments in memory. 
+  Each will have their own PCB, including program counter, registers, and PID. This is the behavior of the fork system call in UNIX.
+  2. The child process may have a new program loaded into its address space, with all new code and data segments. 
+  This is the behavior of the spawn system calls in Windows. UNIX systems implement this as a second step, using the exec system call.
+* Note that the fork system call returns the PID of the processes child to each process - 
+
+It returns a zero to the child process and a non-zero child PID to the parent, so the return value indicates which process is which. 
+Process IDs can be looked up any time for the current process or its direct parent using the getpid( ) and getppid( ) system calls 
+respectively.
+
+Process Termination
+Processes may request their own termination by making the exit( ) system call, typically returning an int. 
+This int is passed along to the parent if it is doing a wait( ), and is typically zero on successful completion and some non-zero 
+code in the event of problems.
+child code:
+            int exitCode;
+            exit( exitCode );  // return exitCode; has the same effect when executed from main( )
+parent code:
+            pid_t pid;
+            int status
+            pid = wait( &status ); 
+            // pid indicates which child exited. exitCode in low-order bits of status
+            // macros can test the high-order bits of status for why it stopped
+
+Processes may also be terminated by the system for a variety of reasons, including:
+* The inability of the system to deliver necessary system resources.
+* In response to a KILL command, or other un handled process interrupt.
+* A parent may kill its children if the task assigned to them is no longer needed.
+* If the parent exits, the system may or may not allow the child to continue without a parent. 
+( On UNIX systems, orphaned processes are generally inherited by init, which then proceeds to kill them. 
+The UNIX nohup command allows a child to continue executing after its parent has exited. )
+
+When a process terminates, all of its system resources are freed up, open files flushed and closed, etc. 
+The process termination status and execution times are returned to the parent if the parent is waiting for the child to terminate, 
+or eventually returned to init if the process becomes an orphan. ( Processes which are trying to terminate but which cannot because 
+their parent is not waiting for them are termed zombies. These are eventually inherited by init as orphans and killed off. 
+Note that modern UNIX shells do not produce as many orphans and zombies as older systems used to. )
 
