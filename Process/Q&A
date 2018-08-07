@@ -86,3 +86,11 @@ https://www.tecmint.com/how-to-kill-a-process-in-linux/
 28. How to Find a Process Name Using PID Number in Linux
 https://www.tecmint.com/find-process-name-pid-number-linux/
 
+29. What is the difference between fork(), vfork() and exec()?
+https://stackoverflow.com/questions/4856255/the-difference-between-fork-vfork-exec-and-clone
+
+30. What does wait() do on unix
+http://www.tutorialspoint.com/unix_system_calls/wait.htm
+
+31. How to make Make parent wait for all child processes
+https://stackoverflow.com/questions/19461744/make-parent-wait-for-all-child-processes
